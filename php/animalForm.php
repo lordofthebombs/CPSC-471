@@ -27,10 +27,10 @@
         $raw_declaw =$_POST['declaw'];
             
         
-        if(empty($raw_speciesid) &&
-           empty($raw_age) &&
-           empty($raw_animalName) &&
-           empty($raw_neuter) &&
+        if(empty($raw_speciesid) ||
+           empty($raw_age) ||
+           empty($raw_animalName) ||
+           empty($raw_neuter) ||
            empty($raw_declaw)) {
             
             echo "Please enter full information";
