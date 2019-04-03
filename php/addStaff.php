@@ -7,11 +7,8 @@
   <br>
   Last name: <input type = "text" name = "lName" placeholder = "Enter last name.">
   <br>
-  Specialty: <input type = "text" name = "specialty" placeholder = "Enter specialty.">
+  Staff type: <input type = "text" name = "staffType" placeholder = "Enter staff type.">
   <br>
-  Job type: <input type = "text" name = "jobType" placeholder = "Enter job type.">
-  <br>
-  
   <input type = "submit" class = "btn">
   
  </form>
