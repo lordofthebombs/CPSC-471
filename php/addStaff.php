@@ -1,7 +1,7 @@
 <form method = "post" action = "<?php echo $_SERVER['PHP_SELF']; ?>">
-  Staff ID: <input type = "text" name = "staffID" placeholder = "Enter staff ID.">
+  Staff ID: <input type = "number" name = "staffID" placeholder = "Enter staff ID.">
   <br>
-  Acess pass: <input type = "text" name = "acessPass" placeholder = "Enter acess pass.">
+  Acess pass: <input type = "number" name = "acessPass" placeholder = "Enter acess pass.">
   <br>
   First name: <input type = "text" name = "fName" placeholder = "Enter first name.">
   <br>
