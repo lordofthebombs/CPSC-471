@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2019 at 10:42 PM
+-- Generation Time: Apr 04, 2019 at 09:32 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -34,8 +34,15 @@ CREATE TABLE `adoption_branch` (
   `province` tinytext NOT NULL,
   `city` tinytext NOT NULL,
   `street` tinytext NOT NULL,
-  `admin_id` int(6) NOT NULL
+  `admin_id` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `adoption_branch`
+--
+
+INSERT INTO `adoption_branch` (`branch_id`, `phone_number`, `province`, `city`, `street`, `admin_id`) VALUES
+(1, 1337, 'test', 'test', 'test', 2);
 
 -- --------------------------------------------------------
 
@@ -52,6 +59,15 @@ CREATE TABLE `animal` (
   `declawed` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `animal`
+--
+
+INSERT INTO `animal` (`id_number`, `species_id`, `age`, `name`, `neutered`, `declawed`) VALUES
+(1, 0, 10, 'Bruiser', 'Y', 'Y'),
+(2, 0, 3, 'Mittens', 'N', 'N'),
+(3, 0, 10, 'Scales', 'Y', 'N');
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +79,13 @@ CREATE TABLE `cat` (
   `breed` varchar(20) NOT NULL,
   `branch_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cat`
+--
+
+INSERT INTO `cat` (`id_number`, `breed`, `branch_id`) VALUES
+(2, 'tabby', 1);
 
 -- --------------------------------------------------------
 
@@ -92,6 +115,13 @@ CREATE TABLE `dog` (
   `branch_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `dog`
+--
+
+INSERT INTO `dog` (`id_number`, `breed`, `branch_id`) VALUES
+(1, 'bull dog', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +146,13 @@ CREATE TABLE `staff` (
   `last_name` varchar(20) NOT NULL,
   `staff_type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table for all the staff that work at the adoption branches';
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `staff_type`) VALUES
+(2, 'John', 'Doe', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -193,13 +230,13 @@ ALTER TABLE `works_at`
 -- AUTO_INCREMENT for table `adoption_branch`
 --
 ALTER TABLE `adoption_branch`
-  MODIFY `branch_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `branch_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id_number` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_number` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -211,7 +248,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `staff_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -221,7 +258,7 @@ ALTER TABLE `staff`
 -- Constraints for table `adoption_branch`
 --
 ALTER TABLE `adoption_branch`
-  ADD CONSTRAINT `ADMIN_ID_KEY` FOREIGN KEY (`admin_id`) REFERENCES `staff` (`staff_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ADMIN_ID_KEY` FOREIGN KEY (`admin_id`) REFERENCES `staff` (`staff_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cat`
