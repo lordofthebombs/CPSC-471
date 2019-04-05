@@ -1,14 +1,13 @@
 <form method = "post" action = "<?php echo $_SERVER['PHP_SELF']; ?>">
-Branch ID: <input type = "number" name = "branchID" placeholder = "Enter branch ID">
-<br>
 Phone Number: <input type = "number" name = "phoneNum" placeholder = "Enter phone number">
 <br>
 <!--div allows for the side by side entry boxes-->
 <div class = "input-group"></div>
-Location: <input type = "varchar" name = "address" placeholder = "Address"> <input type = "varchar" name = "city" placeholder = "City"><input type = "varchar" name = "arovince" placeholder="Province"><input type = "varchar" name = "aountry" placeholder="Country">
+Location: <input type = "text" name = "street" placeholder = "Street">
+<input type = "text" name = "city" placeholder = "City">
+<input type = "text" name = "province" placeholder="Province">
 <br>
 <!--Admin access?-->
-
 </form>
 
 
@@ -18,22 +17,21 @@ include('dbconnection.php');
 
 //checks to see if request was POST or GET
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $branchID = $_POST['branchID'];
     $phoneNum = $_POST['phoneNum'];
-    $address = $_POST['address'];
+    $street = $_POST['street'];
     $city = $_POST['city'];
     $province = $_POST['province'];
-    $country = $_POST['country'];
 }
-if (empty($branchID) || empty($phoneNum) || empty($address) || empty($city) || empty($province) || empty($country)){
+if (empty($phoneNum) || empty($address) || empty($city) || empty($province)){
     echo "Please fill out branch information";
 }
 
 else {
-    $addBranch = "INSERT INTO branch (branchID, phoneNum, address, city, province, country) VALUES ($branchID, $phoneNum, $address, $city, $province, $country)";
-    
-    $runaddBranch = mysqli_query($connection, $query);
-    
+    $addBranch = "INSERT INTO adoption_branch (branch_id, phone_number, province, city, street)
+    VALUES (NULL, $phoneNum, $province, $city, $street)";
+
+    $runaddBranch = mysqli_query($connection, $addBranch);
+
     if($runaddBranch){
         echo "<br>Branch added to records";
     }
