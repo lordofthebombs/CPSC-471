@@ -17,7 +17,7 @@ Animal Species: <input type = "text" name = "species" placeholder="Enter Animal 
    Adoption Branch: <input type = "text" name = "branch" placeholder="Enter Adoption Branch">
    
  <input type = "submit" class = "btn">
-    <a href="animalTable.php"> Go to Animal Table </a>
+    <a href="animalTableSearch.php"> Go to Animal Table </a>
 </form>
 
 
