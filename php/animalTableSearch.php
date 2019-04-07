@@ -1,3 +1,5 @@
+
+   
 <?php
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         include('dbconnection.php');
@@ -36,8 +38,8 @@
   <h2>Animal Table</h2>
   <a href = "animalForm.php"> Go back to Animal Entry </a>
   
-<form method = "post" action = "<?php echo $_SERVER['PHP_SELF'];?>">
-         <input type = "text" name = "searchingValue" placeholder="Search"> <br>
+<form method = "post" action =   "<?php echo $_SERVER['PHP_SELF'];?>">
+     <input type = "text" name = "searchingValue" placeholder="Search"> <br>
      <input type = "submit" name = "searchBtn" value = "Search"> <br>
  
   <table class="table table-bordered table table-hover">
@@ -49,17 +51,20 @@
         <th>name</th>
         <th>neutered</th>
         <th>declawed</th>
+        <th> Edit </th>
       </tr>
     </thead>
     <tbody>
      <?php while($row = mysqli_fetch_array($searchResult)): ?>
       <tr>
-        <td><?php echo $row['id_number']?></td>
+        <td><?php echo $row['id_number'] ?></td>
         <td><?php echo $row['species_id']?></td>
         <td><?php echo $row['age']?></td>
         <td><?php echo $row['name']?></td>
         <td><?php echo $row['neutered']?></td>
         <td><?php echo $row['declawed']?></td>
+        <td><a class = "btn btn-primary" href="updateAnimal.php?id_number=<?php echo $row['id_number'] ?>"> Edit</a></td>
+
 
       </tr>
     <?php endwhile;?>
