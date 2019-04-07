@@ -33,7 +33,7 @@
     <?php  endwhile;?> 
     <input type = "submit" class = "btn" name = "submitBtn">
 
-    <a href="animalTable.php"> Go to Animal Table </a>
+    <a href="animalTableSearch.php"> Go to Animal Table </a>
 </form>
 
 <?php
