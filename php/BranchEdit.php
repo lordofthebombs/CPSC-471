@@ -28,26 +28,11 @@ if (empty($branchID) || empty($phoneNum) || empty($address) || empty($city) || e
     echo "Please fill out branch information";
 }
 
-/*else{
-    $addBranch = "INSERT INTO Branch (branchID, phoneNum, address, city, province, country) VALUES ($branchID, $phoneNum, $address, $city, $province, $country)";
-    
-    $runaddBranch = mysqli_query($connection, $query);}
-    
-    if($runaddBranch){
-        echo "<br>Branch added to records";
-    }
-    else {
-        echo "<br> ERROR: Branch not added";
-    }*/
 
-mysqli_close($connection);
-
+include('dbconnection.php');
+$connect = mysqli_connect($connection, $queue);
+if(!$connect){
+    die("Unable to connect: ");
+}
+$sql = "UPDATE BranchTable SET (branchID = $branchID AND phoneNum = $phoneNum AND address = $address AND city = $city AND province = $province AND country = $country)";
 ?>
-
-<html lang = "en">
-<div class = "input-group"></div>
-<form method = "POST" action = "processBranch.php">
-    <input type = "submit" name = "addBranch" value = "Add Branch">
-    <input type = "submit" name = "deleteBranch" value = "Delete Branch">
-    
-</form>
