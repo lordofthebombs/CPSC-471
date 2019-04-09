@@ -1,11 +1,16 @@
-<!-- These will be the inputs that the user will enter and search for an staff member
-by terms that they entered in -->
-<form method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
-    First name: <input type = "text" name = "fName">
-    Last name: <input type = "text" name = "lName">
-    Branch ID: <input type = "number" name = "branchID">
-    <input type = "submit">
-</form>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Search Staff</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
 
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -36,20 +41,31 @@ by terms that they entered in -->
     $queryResult = mysqli_query($connection, $query);
 ?>
 
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-</style>
 
-<table style = "width: 20%">
+<div class = "container">
+    <h2>Staff Table</h2>
+
+<!-- These will be the inputs that the user will enter and search for an staff member
+by terms that they entered in -->
+<form method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
+First name: <input type = "text" name = "fName">
+Last name: <input type = "text" name = "lName">
+Branch ID: <input type = "number" name = "branchID">
+<input type = "submit" value = "Search">
+
+
+
+
+<table class = "table table-bordered table table-hover">
+    <thead>
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Staff ID</th>
         <th>Branch ID</th>
     </tr>
+    </thead>
+    <tbody>
     <?php while ($row = mysqli_fetch_array($queryResult)) { ?>
     <tr>
         <td><?php echo $row['first_name'];?></td>
@@ -58,4 +74,10 @@ table, th, td {
         <td><?php echo $row['branch_id'];?></td>
     </tr>
     <?php } ?>  <!-- End of php while loop -->
+    </tbody>
 </table>
+</form>
+</div>
+
+</body>
+</html>
