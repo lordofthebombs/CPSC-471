@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2019 at 09:32 PM
+-- Generation Time: Apr 10, 2019 at 09:42 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -31,8 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `adoption_branch` (
   `branch_id` int(4) NOT NULL,
   `phone_number` int(10) NOT NULL,
-  `province` tinytext NOT NULL,
-  `city` tinytext NOT NULL,
+  `country` varchar(20) NOT NULL,
+  `province` varchar(20) NOT NULL,
+  `city` varchar(20) NOT NULL,
   `street` tinytext NOT NULL,
   `admin_id` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,8 +42,8 @@ CREATE TABLE `adoption_branch` (
 -- Dumping data for table `adoption_branch`
 --
 
-INSERT INTO `adoption_branch` (`branch_id`, `phone_number`, `province`, `city`, `street`, `admin_id`) VALUES
-(1, 1337, 'test', 'test', 'test', 2);
+INSERT INTO `adoption_branch` (`branch_id`, `phone_number`, `country`, `province`, `city`, `street`, `admin_id`) VALUES
+(3, 18889999, 'U.S.A.', 'Rhode Island', 'Quahog', 'Spooner Street', 2);
 
 -- --------------------------------------------------------
 
@@ -59,15 +60,6 @@ CREATE TABLE `animal` (
   `declawed` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `animal`
---
-
-INSERT INTO `animal` (`id_number`, `species_id`, `age`, `name`, `neutered`, `declawed`) VALUES
-(1, 0, 10, 'Bruiser', 'Y', 'Y'),
-(2, 0, 3, 'Mittens', 'N', 'N'),
-(3, 0, 10, 'Scales', 'Y', 'N');
-
 -- --------------------------------------------------------
 
 --
@@ -79,13 +71,6 @@ CREATE TABLE `cat` (
   `breed` varchar(20) NOT NULL,
   `branch_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `cat`
---
-
-INSERT INTO `cat` (`id_number`, `breed`, `branch_id`) VALUES
-(2, 'tabby', 1);
 
 -- --------------------------------------------------------
 
@@ -114,13 +99,6 @@ CREATE TABLE `dog` (
   `breed` varchar(20) NOT NULL,
   `branch_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `dog`
---
-
-INSERT INTO `dog` (`id_number`, `breed`, `branch_id`) VALUES
-(1, 'bull dog', 1);
 
 -- --------------------------------------------------------
 
@@ -157,6 +135,33 @@ INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `staff_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `vet_clinic`
+--
+
+CREATE TABLE `vet_clinic` (
+  `clinic_id` int(4) NOT NULL,
+  `clinic_name` varchar(20) NOT NULL,
+  `phone_number` int(11) NOT NULL,
+  `country` varchar(20) NOT NULL,
+  `province` varchar(20) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `street` tinytext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vet_employed_by`
+--
+
+CREATE TABLE `vet_employed_by` (
+  `clinic_id` int(4) NOT NULL,
+  `branch_id` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `works_at`
 --
 
@@ -186,7 +191,7 @@ ALTER TABLE `animal`
 -- Indexes for table `cat`
 --
 ALTER TABLE `cat`
-  ADD KEY `CAT_ID_KEY` (`id_number`),
+  ADD PRIMARY KEY (`id_number`),
   ADD KEY `CAT_BRANCH_ID_KEY` (`branch_id`);
 
 --
@@ -200,20 +205,33 @@ ALTER TABLE `client`
 -- Indexes for table `dog`
 --
 ALTER TABLE `dog`
-  ADD KEY `DOG_ID_KEY` (`id_number`),
+  ADD PRIMARY KEY (`id_number`),
   ADD KEY `DOG_BRANCH_ID_KEY` (`branch_id`);
 
 --
 -- Indexes for table `other`
 --
 ALTER TABLE `other`
-  ADD KEY `OTHER_BRANCH_ID_KEY` (`id_number`);
+  ADD PRIMARY KEY (`id_number`);
 
 --
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`staff_id`);
+
+--
+-- Indexes for table `vet_clinic`
+--
+ALTER TABLE `vet_clinic`
+  ADD PRIMARY KEY (`clinic_id`);
+
+--
+-- Indexes for table `vet_employed_by`
+--
+ALTER TABLE `vet_employed_by`
+  ADD KEY `CLINIC_ID_KEY` (`clinic_id`),
+  ADD KEY `VET_BRANCH_ID_KEY` (`branch_id`);
 
 --
 -- Indexes for table `works_at`
@@ -230,13 +248,13 @@ ALTER TABLE `works_at`
 -- AUTO_INCREMENT for table `adoption_branch`
 --
 ALTER TABLE `adoption_branch`
-  MODIFY `branch_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `branch_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id_number` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_number` int(8) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -280,6 +298,13 @@ ALTER TABLE `dog`
 ALTER TABLE `other`
   ADD CONSTRAINT `OTHER_BRANCH_ID_KEY` FOREIGN KEY (`id_number`) REFERENCES `adoption_branch` (`branch_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `OTHER_ID_KEY` FOREIGN KEY (`id_number`) REFERENCES `animal` (`id_number`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vet_employed_by`
+--
+ALTER TABLE `vet_employed_by`
+  ADD CONSTRAINT `CLINIC_ID_KEY` FOREIGN KEY (`clinic_id`) REFERENCES `vet_clinic` (`clinic_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `VET_BRANCH_ID_KEY` FOREIGN KEY (`branch_id`) REFERENCES `adoption_branch` (`branch_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `works_at`
