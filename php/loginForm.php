@@ -62,9 +62,10 @@
             $run_query = mysqli_query($connection, $query);
             
             if($run_query) {
-                    
+                    echo "Login Successful";
+                header("Location:./adoptionCentreLanding.php");
             } else {
-                
+                echo "Could not login.";    
             }
         }
             

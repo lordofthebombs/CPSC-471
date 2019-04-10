@@ -19,16 +19,13 @@
     }
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>View Animals</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">    
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
@@ -52,6 +49,7 @@
         <th>neutered</th>
         <th>declawed</th>
         <th> Edit </th>
+        <th> Delete </th>
       </tr>
     </thead>
     <tbody>
@@ -64,8 +62,7 @@
         <td><?php echo $row['neutered']?></td>
         <td><?php echo $row['declawed']?></td>
         <td><a class = "btn btn-primary" href="updateAnimal.php?id_number=<?php echo $row['id_number'] ?>"> Edit</a></td>
-
-
+        <td><a class = "btn btn-danger" href="deleteAnimal.php?id_number=<?php echo $row['id_number'] ?>">Delete</a></td>
       </tr>
     <?php endwhile;?>
     </tbody>
