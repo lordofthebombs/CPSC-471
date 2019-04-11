@@ -24,9 +24,9 @@ $updatedForm = mysqli_query($connection, $query);
         <form class="form-horizontal" method = "post" action="">
             <?php while($row = mysqli_fetch_array($updatedForm)): ?>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="pwd">Enter Staff Type:</label>
+                    <label class="control-label col-sm-2" for="pwd">Enter new quantity:</label>
                     <div class="col-sm-10">
-                        <input type="number"  class="form-control" value=<?php echo $row['quantity']?> name="quantity>
+                        <input type="number"  class="form-control" value=<?php echo $row['quantity']?> name="quantity">
                     </div>
                 </div>
             <?php  endwhile;?>
@@ -53,18 +53,15 @@ include('dbconnection.php');
 
 if(isset($_POST['submitBtn']))
 {
-    //raw data not cleaned
-    $brand = $_POST['brand'];
-    $animalType = $_POST['animal_type'];
     $quantity= $_POST['quantity'];
 
-    $query = "UPDATE food SET quantity = $quantity WHERE brand = '$brand";
+    $query = "UPDATE food SET quantity = $quantity WHERE brand = '$brand'";
     $run_query = mysqli_query($connection, $query);
 
     if ($run_query) {
-        echo "Staff updated.";
+        echo "Food quantity updated.";
     } else {
-        echo "Staff could not be updated.";
+        echo "Food quantity not be updated.";
     }
 
 }
