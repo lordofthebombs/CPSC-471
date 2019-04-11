@@ -1,3 +1,5 @@
+<?php include("dbconnection.php"); ?>
+
 <DOCTYPE !html>
 <html lang="en">
 <head>
@@ -25,21 +27,23 @@
                     <th> Brand name </th>
                     <th> Animal type </th>
                     <th> Quantity </th>
+                    <th> Edit </th>
+                    <th> Delete </th>
                 </tr>
             </thead>
             <tbody>
-                <?php   $searchFood = "SELECT * FROM food";
+                <?php   $searchFood = "SELECT * FROM `food`";
                         $result = mysqli_query($connection, $searchFood);
                         while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <tr>
                     <td><?php echo $row['brand'];?></td>
-                    <td><?php echo $row['animal_type'];?></td>
+                    <td><?php echo $row['species_type'];?></td>
                     <td><?php echo $row['quantity'];?></td>
                     <td><a class = "btn btn-primary" href="updateFood.php?brand=<?php echo $row['brand']; ?>"> Edit</a></td>
                     <td><a class = "btn btn-danger" href="deleteFood.php?brand=<?php echo $row['brand']; ?>"> Delete</a></td>
                 </tr>
-                <?php } ?> <!-- Endhwile -->
+                <?php   } //Endwhile ?>
             </tbody>
         </table>
 
@@ -49,7 +53,6 @@
 
 <?php
 
-    include("dbconnection.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $brand = $_POST["brand"];
@@ -68,16 +71,13 @@
 
         if($runQuery) {
             echo "<br>Food added to database";
+            header("Refresh:1");
         }
         else {
             echo "<br>ERROR: Food not added to database";
+            header("Refresh:1");
         }
 
     }
-
-
-
-
-
 
  ?>
