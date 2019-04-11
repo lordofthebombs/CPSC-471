@@ -6,6 +6,8 @@ Phone Number: <input type = "number" name = "phoneNum" placeholder = "Enter phon
 Location: <input type = "text" name = "street" placeholder = "Street">
 <input type = "text" name = "city" placeholder = "City">
 <input type = "text" name = "province" placeholder="Province">
+<input type = "text" name = "country" placeholder="Country">
+<input type = "submit" class = "btn">
 <br>
 <!--Admin access?-->
 </form>
@@ -21,14 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $street = $_POST['street'];
     $city = $_POST['city'];
     $province = $_POST['province'];
+    $country = $_POST['country'];
 }
-if (empty($phoneNum) || empty($address) || empty($city) || empty($province)){
-    echo "Please fill out branch information";
+if (empty($phoneNum) || empty($street) || empty($city) || empty($province) || empty($country)){
+    echo "Please fill out all branch information";
 }
 
 else {
-    $addBranch = "INSERT INTO adoption_branch (branch_id, phone_number, province, city, street)
-    VALUES (NULL, $phoneNum, $province, $city, $street)";
+    $addBranch = "INSERT INTO adoption_branch (branch_id, phone_number, country, province, city, street, admin_id)
+    VALUES (NULL, $phoneNum, '$country', '$province', '$city', '$street', NULL)";
 
     $runaddBranch = mysqli_query($connection, $addBranch);
 
