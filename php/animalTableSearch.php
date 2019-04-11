@@ -34,7 +34,14 @@
 <div class="container">
   <h2>Animal Table</h2>
   <a href = "animalForm.php"> Go back to Animal Entry </a>
-  
+  <br>
+  <a href = "searchDog.php"> View all Dogs </a>
+  <br>
+  <a href = "searchCat.php"> View all Cats </a>
+  <br>
+  <a href = "searchOther.php"> View Other Animals </a>
+
+
 <form method = "post" action =   "<?php echo $_SERVER['PHP_SELF'];?>">
      <input type = "text" name = "searchingValue" placeholder="Search"> <br>
      <input type = "submit" name = "searchBtn" value = "Search"> <br>

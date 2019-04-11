@@ -149,10 +149,6 @@
             //takes the last incremented id from animal for our other animal tables (dog, cat, other)
             $last_id = mysqli_insert_id($connection);
             
-            echo $raw_species;
-            echo $last_id;
-            echo $raw_breed;
-            echo $raw_branch;
             //checks to see which species was entered
             if ($raw_species == "dog") {
                 
@@ -186,8 +182,8 @@
                      echo "<br>Record not added.";
                 }
             } else {
-                echo "no sir";
-            }        
+                echo "Record could not find appropriate Animal Table.";
+            } 
         }
     }
     mysqli_close($connection);

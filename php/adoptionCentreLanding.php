@@ -15,7 +15,8 @@
     <a class = "btn btn-primary" href="addClient.php"> Add Client</a>
     <a class = "btn btn-primary" href="addStaff.php"> Add Staff</a>
     <a class = "btn btn-primary" href="searchStaff.php"> View Staff</a>
-
-
+    <a class = "btn btn-primary" href="setAdoption.php"> Enter Adoption</a>
+    <a class = "btn btn-primary" href="searchAdoption.php"> View Adoptions </a>
+    
 </body>
 </html>
