@@ -13,7 +13,10 @@
 <body>
     <div class="container">
         <h2> Food </h2>
+<<<<<<< HEAD
         <a href="adoptionCentreLanding.php"> Go to Landing Page</a>
+=======
+>>>>>>> master
         <form method = "post" action = "<?php echo $_SERVER['PHP_SELF'];?>">
             <input type = "text" name = "brand" placeholder = "Brand name">
             <input type = "text" name = "animalType" placeholder = "Animal type">
@@ -53,18 +56,33 @@
 
 
 <?php
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $brand = $_POST["brand"];
         $animalType = $_POST["animalType"];
         $quantity = $_POST["quantity"];
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     if (empty($brand) || empty($animalType) || empty($quantity)) {
         echo "Please enter in all information";
     }
     else {
         $addFood = "INSERT INTO food (brand, species_type, quantity)
         VALUES ('$brand', '$animalType', $quantity)";
+<<<<<<< HEAD
         $runQuery = mysqli_query($connection, $addFood);
+=======
+
+        $runQuery = mysqli_query($connection, $addFood);
+
+>>>>>>> master
         if($runQuery) {
             echo "<br>Food added to database";
             header("Refresh:1");
@@ -73,5 +91,12 @@
             echo "<br>ERROR: Food not added to database";
             header("Refresh:1");
         }
+<<<<<<< HEAD
     }
  ?>
+=======
+
+    }
+
+ ?>
+>>>>>>> master

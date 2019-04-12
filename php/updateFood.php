@@ -1,7 +1,15 @@
 <?php
+<<<<<<< HEAD
 include("dbconnection.php");
 $brand = $_GET['brand'];
 $query = "SELECT * FROM food WHERE brand='$brand'";
+=======
+
+include("dbconnection.php");
+$brand = $_GET['brand'];
+$query = "SELECT * FROM food WHERE brand='$brand'";
+
+>>>>>>> master
 $updatedForm = mysqli_query($connection, $query);
 ?>
 
@@ -45,6 +53,7 @@ $updatedForm = mysqli_query($connection, $query);
 
 
 <?php
+<<<<<<< HEAD
 //includes the connection opening
 include('dbconnection.php');
 if(isset($_POST['submitBtn']))
@@ -52,10 +61,29 @@ if(isset($_POST['submitBtn']))
     $quantity= $_POST['quantity'];
     $query = "UPDATE food SET quantity = $quantity WHERE brand = '$brand'";
     $run_query = mysqli_query($connection, $query);
+=======
+
+//includes the connection opening
+include('dbconnection.php');
+
+if(isset($_POST['submitBtn']))
+{
+    $quantity= $_POST['quantity'];
+
+    $query = "UPDATE food SET quantity = $quantity WHERE brand = '$brand'";
+    $run_query = mysqli_query($connection, $query);
+
+>>>>>>> master
     if ($run_query) {
         echo "Food quantity updated.";
     } else {
         echo "Food quantity not be updated.";
     }
+<<<<<<< HEAD
 }
 ?>
+=======
+
+}
+?>
+>>>>>>> master
