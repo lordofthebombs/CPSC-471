@@ -38,7 +38,8 @@
 <div class = "container">
     <h2>Staff Table</h2>
       <a href = "addStaff.php"> Go back to Staff Entry </a>
-
+      <br>
+      <a href = "adoptionCentreLanding.php"> Go to Landing Page</a>
 <!-- These will be the inputs that the user will enter and search for an staff member
 by terms that they entered in -->
 <form method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">

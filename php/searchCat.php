@@ -30,7 +30,7 @@
 <body>
 
 <div class="container">
-  <h2>Branch Table</h2>
+  <h2>Cats</h2>
   <a href = "animalForm.php"> Go to Add Animal </a>
   <br>
   <a href = "animalTableSearch.php"> Go to Animal Table </a>

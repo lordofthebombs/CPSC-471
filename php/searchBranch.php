@@ -33,6 +33,9 @@
 <div class="container">
   <h2>Branch Table</h2>
   <a href = "addBranch.php"> Go to Add a Branch </a>
+  <br>    
+  <a href = "adoptionCentreLanding.php"> Go to Landing Page </a>
+
   
 <form method = "post" action ="<?php echo $_SERVER['PHP_SELF'];?>">
      <input type = "text" name = "searchingValue" placeholder="Search"> <br>

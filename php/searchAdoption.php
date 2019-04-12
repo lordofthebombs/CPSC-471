@@ -30,7 +30,7 @@
 <body>
 
 <div class="container">
-  <h2>Branch Table</h2>
+  <h2>Adoption Table</h2>
   <a href = "adoptionCentreLanding.php"> Go to Landing Page</a>
   
 <form method = "post" action ="<?php echo $_SERVER['PHP_SELF'];?>">

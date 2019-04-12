@@ -30,7 +30,7 @@
 <body>
 
 <div class="container">
-  <h2>Branch Table</h2>
+  <h2>Dogs</h2>
   <a href = "animalForm.php"> Go to Add Animal </a>
   <br>
   <a href = "animalTableSearch.php"> Go to Animal Table </a>
@@ -38,7 +38,7 @@
 <form method = "post" action ="<?php echo $_SERVER['PHP_SELF'];?>">
      <input type = "text" name = "searchingValue" placeholder="Search"> <br>
      <input type = "submit" name = "searchBtn" value = "Search"> <br>
- 
+
   <table class="table table-bordered table table-hover">
     <thead>
       <tr>

@@ -66,6 +66,7 @@
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">Submit</button>
         <a href="animalTableSearch.php"> Go to Animal Table </a>
+        <a href="adoptionCentreLanding.php"> Go to Landing Page</a>
       </div>
     </div>
   </form>

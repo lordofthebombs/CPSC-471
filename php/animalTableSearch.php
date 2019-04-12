@@ -33,6 +33,8 @@
 
 <div class="container">
   <h2>Animal Table</h2>
+  <a href ="adoptionCentreLanding.php"> Go to Landing Page</a>
+  <br>
   <a href = "animalForm.php"> Go back to Animal Entry </a>
   <br>
   <a href = "searchDog.php"> View all Dogs </a>
