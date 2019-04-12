@@ -7,10 +7,15 @@
     $query = "DELETE from animal WHERE id_number='$id_number'";
     
     $runquery = mysqli_query($connection, $query);
+    if ($runquery) {
+        echo "Successfully deleted record";
+    } else {
+        echo "Could not delete animal";
+    }
 ?>
 
 
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

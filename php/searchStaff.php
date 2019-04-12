@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +16,6 @@
         $lName = $_POST["lName"];
         $branchID = $_POST["branchID"];
     }
-
     include('dbconnection.php');
     // Checks to see if all fields are empty and if so return all employees
     if (empty($fName) && empty($lName) && empty($branchID)) {
@@ -30,21 +27,19 @@
         $query = "SELECT first_name, last_name, s.staff_id,branch_id FROM staff AS s, works_at AS w
         WHERE s.first_name LIKE '$fName%' AND s.last_name LIKE '$lName%' AND w.branch_id = $branchID AND s.staff_id = w.staff_id ";
     }
-
     else {
         $query = "SELECT first_name, last_name, s.staff_id, branch_id FROM staff AS s, works_at AS w
         WHERE s.first_name LIKE '$fName%' AND s.last_name LIKE '$lName%' AND s.staff_id = w.staff_id";
     }
-
-    echo "<br>".$query."<br>";
-
     $queryResult = mysqli_query($connection, $query);
 ?>
 
 
 <div class = "container">
     <h2>Staff Table</h2>
-
+      <a href = "addStaff.php"> Go back to Staff Entry </a>
+      <br>
+      <a href = "adoptionCentreLanding.php"> Go to Landing Page</a>
 <!-- These will be the inputs that the user will enter and search for an staff member
 by terms that they entered in -->
 <form method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
@@ -63,6 +58,8 @@ Branch ID: <input type = "number" name = "branchID">
         <th>Last Name</th>
         <th>Staff ID</th>
         <th>Branch ID</th>
+        <th> Edit</th>
+        <th> Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -72,6 +69,8 @@ Branch ID: <input type = "number" name = "branchID">
         <td><?php echo $row['last_name'];?></td>
         <td><?php echo $row['staff_id'];?></td>
         <td><?php echo $row['branch_id'];?></td>
+        <td><a class = "btn btn-primary" href="updateStaff.php?staff_id=<?php echo $row['staff_id'] ?>"> Edit</a></td>
+        <td><a class = "btn btn-danger" href="deleteStaff.php?staff_id=<?php echo $row['staff_id'] ?>">Delete</a></td>
     </tr>
     <?php } ?>  <!-- End of php while loop -->
     </tbody>
