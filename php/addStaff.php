@@ -12,13 +12,21 @@
 <body>
 
 <div class="container">
-  <h2>Enter Adoption Centre Staff </h2>
+     <h2>Enter Adoption Centre Staff </h2>
   <form class="form-horizontal" method = "post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-   
+   <?php 
+         include('dbconnection.php');
+        $query = "SELECT branch_id FROM adoption_branch";
+        $run_query = mysqli_query($connection, $query);
+    ?>
    <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Enter Branch ID:</label>
-      <div class="col-sm-10">          
-        <input type="text" class="form-control" placeholder="Enter Branch ID" name="branchID">
+      <div class="col-sm-10">  
+       <select name = "branchID" class = "form-control">    
+            <?php while ($row = mysqli_fetch_array($run_query)) { ?>
+            <option  value = "<?php echo $row['branch_id'] ?>"> <?php echo $row['branch_id'];?> </option>
+        <?php } ?>
+        </select>              
       </div>
     </div>
    
@@ -36,8 +44,13 @@
     </div>
      <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Enter Staff Type:</label>
-      <div class="col-sm-10">          
-        <input type="text" class="form-control" placeholder="Enter Staff Type" name="staffType">
+      <div class="col-sm-10">     
+       <select name = "staffType" class = "form-control">    
+            
+            <option value = "Admin"> Admin </option>
+            <option value = "Volunteer"> Volunteer </option>
+            <option value = "Employee"> Employee </option>
+        </select>     
       </div>
     </div>
     <div class="form-group">        

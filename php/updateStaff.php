@@ -21,7 +21,7 @@
 <body>
 
 <div class="container">
-  <h2>Edit <Staff></Staff> </h2>
+  <h2>Edit Staff </h2>
   <form class="form-horizontal" method = "post" action="">
     <?php while($row = mysqli_fetch_array($updatedForm)): ?>
 

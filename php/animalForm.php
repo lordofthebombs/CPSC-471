@@ -14,9 +14,15 @@
   <h2>Enter Animal</h2>
   <form class="form-horizontal" method = "post" action="<?php echo $_SERVER['PHP_SELF'];?>">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Species ID:</label>
+
+      <label class="control-label col-sm-2" for="email">Species:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" placeholder="Enter Species ID" name="speciesid">
+      <select name = "speciesid" class = "form-control">    
+            
+            <option value = "1"> Dog </option>
+            <option value = "2"> Cat </option>
+            <option value = "3"> Other </option>
+        </select>
       </div>
     </div>
     <div class="form-group">
@@ -26,27 +32,21 @@
       </div>
     </div>
      <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Animal Name</label>
+      <label class="control-label col-sm-2" for="pwd">Animal Name:</label>
       <div class="col-sm-10">          
         <input type="text" class="form-control" placeholder="Enter Animal Name" name="animalName">
       </div>
     </div>
      <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Neutered</label>
+      <label class="control-label col-sm-2" for="pwd">Neutered:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" placeholder="Enter Neutered Status" name="operation">
+        <input type="checkbox" value = "y" class="checkbox-inline" name="operation">
       </div>
     </div>
      <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Declawed:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" placeholder="Enter Declawed Status" name="declaw">
-      </div>
-    </div>
-     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Animal Species:</label>
-      <div class="col-sm-10">          
-        <input type="text" class="form-control" placeholder="Enter Animal Species" name="species">
+        <input type="checkbox" class="checkbox-inline" name="declaw">
       </div>
     </div>
      <div class="form-group">
@@ -56,9 +56,18 @@
       </div>
     </div>
      <div class="form-group">
+    <?php 
+         include('dbconnection.php');
+        $query = "SELECT branch_id FROM adoption_branch";
+        $run_query = mysqli_query($connection, $query);
+    ?>
       <label class="control-label col-sm-2"> Adoption Branch:</label>
-      <div class="col-sm-10">          
-        <input type="text" class="form-control" placeholder="Enter Adoption Branch" name="branch">
+      <div class="col-sm-10">    
+        <select name = "branch" class = "form-control">    
+            <?php while ($row = mysqli_fetch_array($run_query)) { ?>
+            <option  value = "<?php echo $row['branch_id'] ?>"> <?php echo $row['branch_id'];?> </option>
+        <?php } ?>
+        </select>      
       </div>
     </div>
 
@@ -114,9 +123,16 @@
         $raw_speciesid = $_POST['speciesid'];
         $raw_age = $_POST['animalAge'];
         $raw_animalName=$_POST['animalName'];
-        $raw_neuter =$_POST['operation'];
-        $raw_declaw =$_POST['declaw'];
-        $raw_species = $_POST['species'];
+        if (empty($_POST['operation']))
+            $raw_neuter = "n";
+        else
+            $raw_neuter =$_POST['operation'];
+        
+        if (empty($_POST['declaw']))
+            $raw_declaw = "n";
+        else
+            $raw_declaw = $_POST['declaw'];
+        
         $raw_breed = $_POST['breed'];
         $raw_branch = $_POST['branch'];
         
@@ -126,14 +142,23 @@
            empty($raw_animalName) ||
            empty($raw_neuter) ||
            empty($raw_declaw) ||
-           empty($raw_species) ||
            empty($raw_breed) ||
-           empty($raw_branch) || $raw_speciesid > 3 && $raw_species < 1) 
+           empty($raw_branch))
            {
             echo "Please enter full information";
         }
         else
         {
+            
+            //sets the species
+            if ($raw_speciesid == "1") {
+                $raw_species = "dog";
+            } else if ($raw_speciesid == "2") {
+                $raw_species = "cat";
+            } else {
+                $raw_species = "other";
+            }
+            
             //query statement to insert a new animal
             $query = "INSERT INTO animal (id_number, species_id, age, name, neutered, declawed) VALUES ('NULL','$raw_speciesid','$raw_age','$raw_animalName','$raw_neuter','$raw_declaw')";
             

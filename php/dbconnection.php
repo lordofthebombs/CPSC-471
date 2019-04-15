@@ -11,7 +11,6 @@
 try {
     $connection = mysqli_connect($server,$username,$password,$database);
      if($connection) {
-        echo "Database connection established.";
     }
 } catch (Exception $errormsg) {
     echo $errormsg->getMessage();

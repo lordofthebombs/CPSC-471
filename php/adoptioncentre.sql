@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2019 at 08:15 PM
+-- Generation Time: Apr 14, 2019 at 10:24 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -39,8 +39,9 @@ CREATE TABLE `adoption` (
 --
 
 INSERT INTO `adoption` (`adoption_id`, `adopter`, `adoptee`) VALUES
-(5, 15, 22),
-(6, 17, 20);
+(13, 15, 23),
+(14, 17, 30),
+(15, 15, 30);
 
 -- --------------------------------------------------------
 
@@ -63,9 +64,8 @@ CREATE TABLE `adoption_branch` (
 --
 
 INSERT INTO `adoption_branch` (`branch_id`, `phone_number`, `country`, `province`, `city`, `street`, `admin_id`) VALUES
-(10, 2147483647, 'Canada', 'Alberta', 'Calgary', '640', NULL),
+(10, 2147483647, 'Canada', 'Alberta', 'Calgary', '6404', NULL),
 (11, 2147483647, 'Canada', 'Alberta', 'Calgary', '561 Sunmills Dr', NULL),
-(12, 2147483647, 'Canada', 'AB', 'Edmonton', 'Edmonton St', NULL),
 (13, 403662347, 'Canada', 'BC', 'Victoria', 'Nanaimo St', NULL);
 
 -- --------------------------------------------------------
@@ -88,16 +88,14 @@ CREATE TABLE `animal` (
 --
 
 INSERT INTO `animal` (`id_number`, `species_id`, `age`, `name`, `neutered`, `declawed`) VALUES
-(23, 1, 6, 'Winston', 'n', 'n'),
-(24, 2, 14, 'Jemal', 'y', 'y'),
-(25, 3, 30, 'Piper', 'y', 'n'),
+(23, 1, 10, 'Winston2.24', 'n', 'n'),
 (26, 3, 14, 'Piper', 'y', 'y'),
 (27, 2, 2, 'Mr. Whisker', 'n', 'y'),
 (28, 3, 40, 'Shelly', 'y', 'n'),
 (29, 1, 4, 'Hugo', 'y', 'n'),
 (30, 2, 4, 'Spot', 'n', 'y'),
-(31, 1, 4, 'Spike', 'y', 'y'),
-(32, 1, 10, 'Bob', 'y', 'y');
+(31, 1, 10, 'Spike2.0', 'y', 'n'),
+(55, 1, 1, 'Pinky', 'y', 'o');
 
 -- --------------------------------------------------------
 
@@ -116,7 +114,6 @@ CREATE TABLE `cat` (
 --
 
 INSERT INTO `cat` (`id_number`, `breed`, `branch_id`) VALUES
-(24, 'Siemese', 10),
 (27, 'Sphynx', 11),
 (30, 'Tabby', 13);
 
@@ -166,9 +163,8 @@ CREATE TABLE `dog` (
 
 INSERT INTO `dog` (`id_number`, `breed`, `branch_id`) VALUES
 (23, 'Bulldog', 10),
-(29, 'Nova Scotia Duck Tol', 12),
 (31, 'Pitbull', 13),
-(32, 'golden retriever', 10);
+(55, 'Daschund', 10);
 
 -- --------------------------------------------------------
 
@@ -208,8 +204,7 @@ CREATE TABLE `other` (
 --
 
 INSERT INTO `other` (`id_number`, `breed`, `branch_id`) VALUES
-(26, 'Parrot', 11),
-(28, 'Snapping Turtle', 12);
+(26, 'Parrot', 11);
 
 -- --------------------------------------------------------
 
@@ -232,7 +227,8 @@ INSERT INTO `staff` (`staff_id`, `first_name`, `last_name`, `staff_type`) VALUES
 (9, 'Jon', 'Harris', 'Admin'),
 (10, 'Warren', 'Chen', 'Admin'),
 (11, 'Bader', 'Abdulwaseem', 'Admin'),
-(12, 'Andrew', 'Kett', 'Admin');
+(12, 'Andrew', 'Kett', 'Admin'),
+(13, 'Guy', 'Fieiri', 'Volunteer');
 
 -- --------------------------------------------------------
 
@@ -255,9 +251,10 @@ CREATE TABLE `vet_clinic` (
 --
 
 INSERT INTO `vet_clinic` (`clinic_id`, `clinic_name`, `phone_number`, `country`, `province`, `city`, `street`) VALUES
-(4, 'Beltline Vet Clinic', 2147483647, 'Canada', 'AB', 'Calgary', '13th Ave SW'),
+(4, 'Beltlines', 2147483647, 'Canada', 'AB', 'Calgary', '13th'),
 (5, 'Sundance Animal Hosp', 2147483647, 'Canada', 'BC', 'Victoria', 'Nanaimo St'),
-(6, 'Connaught Vet Clinic', 2147483647, 'Canada', 'Alberta', 'Calgary', '13th ave SW');
+(6, 'Connaught Vet Clinic', 2147483647, 'Canada', 'Alberta', 'Calgary', '13th ave SW'),
+(7, 'Sundance', 2147483647, 'Canada', 'Alberta', 'Edmonton', 'Sunmills');
 
 -- --------------------------------------------------------
 
@@ -277,8 +274,8 @@ CREATE TABLE `works_at` (
 INSERT INTO `works_at` (`branch_id`, `staff_id`) VALUES
 (10, 9),
 (11, 10),
-(12, 11),
-(13, 12);
+(13, 12),
+(13, 13);
 
 --
 -- Indexes for dumped tables
@@ -366,37 +363,37 @@ ALTER TABLE `works_at`
 -- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `adoption_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `adoption_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `adoption_branch`
 --
 ALTER TABLE `adoption_branch`
-  MODIFY `branch_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `branch_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id_number` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_number` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `client_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `client_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `staff_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `vet_clinic`
 --
 ALTER TABLE `vet_clinic`
-  MODIFY `clinic_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `clinic_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

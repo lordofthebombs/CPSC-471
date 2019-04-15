@@ -30,10 +30,10 @@
 <body>
 
 <div class="container">
-  <h2>Adoption Table</h2>
+  <h2>Vet Clinics</h2>
   <a href = "adoptionCentreLanding.php"> Go to Landing Page</a>
   <br>
-  <a href = "addVet.php"> Go to Vet Page</a>
+  <a href = "addVet.php"> Add New Vet Clinic </a>
 
 <form method = "post" action ="<?php echo $_SERVER['PHP_SELF'];?>">
      <input type = "text" name = "searchingValue" placeholder="Search"> <br>
